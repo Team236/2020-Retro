@@ -17,26 +17,15 @@ package frc.robot;
  */
 public final class Constants {
 
+    // Stores joystick port numbers
     public static final int USB_LEFT_STICK = 0;
     public static final int USB_RIGHT_STICK = 1;
     public static final int USB_CONTROLLER = 2;
 
-    public static final boolean IS_DEADZONE = true;
-
+    // Stores motor controller ID numbers
     public static final int ID_LEFT_FRONT = 10;
     public static final int ID_LEFT_REAR = 11;
     public static final int ID_RIGHT_FRONT = 15;
     public static final int ID_RIGHT_REAR = 16;
-
-    public static final double LEFT_DEADZONE = 0.15;
-    public static final double RIGHT_DEADZONE = 0.15;
-
-    public static final double DIAMETER = 6.0;
-    public static final double CIRCUMFERENCE = Math.PI *DIAMETER;
-    public static final double GEAR_RATIO = 8.71;
-    // constant by which to multiply to convert revolutions to inches
-    public static final double REV_TO_IN_K = CIRCUMFERENCE / GEAR_RATIO;
-    public static final double IN_TO_REV_K = GEAR_RATIO / CIRCUMFERENCE;
-
 
 }

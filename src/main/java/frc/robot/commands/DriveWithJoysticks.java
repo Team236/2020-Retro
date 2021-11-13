@@ -9,16 +9,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.subsystems.Drive;
 
 public class DriveWithJoysticks extends CommandBase {
 
   private Drive drive;
   private Joystick leftStick, rightStick;
-  private boolean isCube;
-  private int pow = 1;
-  private boolean isDeadzone = Constants.IS_DEADZONE;
   /**
    * Creates a new DriveWithJoysticks.
    */
@@ -27,7 +23,6 @@ public class DriveWithJoysticks extends CommandBase {
     this.drive = drive;
     this.leftStick = leftStick;
     this.rightStick = rightStick;
-    this.isCube = isCube;
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(this.drive);
@@ -36,32 +31,20 @@ public class DriveWithJoysticks extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (isCube) {
-      this.pow = 3;
-      this.isDeadzone = false;
-    } else {
-      this.pow = 1;
-      this.isDeadzone = true;
-    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    //IS_DEADZONE determines whether joystick deadzone is considered
-    if (this.isDeadzone) {
-      drive.setLeftSpeedWithDeadzone(Math.pow(-leftStick.getY(), pow));
-      drive.setRightSpeedWithDeadzone(Math.pow(-rightStick.getY(), pow));
-    } else {
-      drive.setLeftSpeed(Math.pow(-leftStick.getY(), pow));
-      drive.setRightSpeed(Math.pow(-rightStick.getY(), pow));
-    }
+    // Sets each side of robots speeds to correspond to joystick Y-axis
+    drive.setLeftSpeed(-leftStick.getY());
+    drive.setRightSpeed(-rightStick.getY());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    // Stops robot when command to drive ends
     drive.stop();
   }
 
